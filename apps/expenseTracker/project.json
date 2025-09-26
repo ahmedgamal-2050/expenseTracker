@@ -12,14 +12,15 @@
       "options": {
         "outputPath": "dist/apps/expenseTracker",
         "browser": "apps/expenseTracker/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/expenseTracker/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/expenseTracker/public"
-          }
+          },
+          "apps/expenseTracker/src/assets"
         ],
         "styles": ["apps/expenseTracker/src/styles.scss"]
       },

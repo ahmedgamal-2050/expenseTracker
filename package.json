@@ -2,7 +2,9 @@
   "name": "@expense-tracker/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "npx nx run expenseTracker:serve:development --port 4000 -o"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~20.2.0",
@@ -12,8 +14,13 @@
     "@angular/platform-browser": "~20.2.0",
     "@angular/platform-browser-dynamic": "~20.2.0",
     "@angular/router": "~20.2.0",
+    "@ngx-translate/core": "^17.0.0",
+    "@ngx-translate/http-loader": "^17.0.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "lucide-angular": "^0.544.0",
+    "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
-    "zone.js": "~0.15.0"
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@angular-devkit/core": "~20.2.0",

@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected title = 'expenseTracker';
+  private translate = inject(TranslateService);
+
+  constructor() {
+    this.translate.addLangs(['en', 'ar']);
+    this.translate.setFallbackLang('en');
+    this.translate.use('en');
+  }
 }
