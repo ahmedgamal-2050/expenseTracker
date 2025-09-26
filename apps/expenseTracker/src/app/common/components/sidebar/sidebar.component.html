@@ -1,0 +1,14 @@
+<section
+  class="w-[12rem] border-e border-gray-200 h-screen fixed top-[3.5rem] start-0 overflow-y-auto"
+>
+  <ul class="flex flex-col items-start p-4 gap-4">
+    @for (item of sidebarMenu(); track item.name) {
+    <li>
+      <a class="flex items-center gap-2" [routerLink]="item.link">
+        <i-lucide [img]="item.icon" class="size-4" />
+        {{ item.name }}
+      </a>
+    </li>
+    }
+  </ul>
+</section>

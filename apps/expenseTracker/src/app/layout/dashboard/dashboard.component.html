@@ -1,0 +1,11 @@
+<app-top-navbar />
+
+<div class="flex gap-4 w-full">
+  <div class="hidden md:block">
+    <app-sidebar [sidebarMenu]="dashboardMenu()" />
+  </div>
+
+  <section class="w-full md:w-[calc(100%-12rem)] ms-auto bg-gray-50 h-screen">
+    <router-outlet />
+  </section>
+</div>

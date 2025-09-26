@@ -1,3 +1,5 @@
 {
-  "title": "متتبع النفقات"
+  "title": "متتبع النفقات",
+  "sidebar_item_dashboard_label": "لوحة التحكم",
+  "sidebar_item_expenses_label": "النفقات"
 }

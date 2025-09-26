@@ -1,3 +1,5 @@
 {
-  "title": "Expense Tracker"
+  "title": "Expense Tracker",
+  "sidebar_item_dashboard_label": "Dashboard",
+  "sidebar_item_expenses_label": "Expenses"
 }

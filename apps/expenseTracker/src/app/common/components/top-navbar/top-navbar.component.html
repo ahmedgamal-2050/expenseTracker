@@ -1,0 +1,112 @@
+<nav
+  class="w-full border-b border-gray-200 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-900/70"
+>
+  <div class="flex h-14 w-full items-center justify-between px-6">
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        aria-label="Home"
+        class="sm:text-xl text-lg font-semibold select-none text-blue-700"
+      >
+        Expense Tracker Logo
+      </button>
+    </div>
+
+    <div class="md:flex hidden items-center gap-2">
+      <button
+        type="button"
+        (click)="toggleLanguage()"
+        class="inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm hover:bg-gray-50 active:scale-[.99] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      >
+        <i-lucide [img]="globeIcon" class="size-4" />
+        {{ currentLanguage() === 'ar' ? 'AR' : 'EN' }}
+      </button>
+
+      <button
+        type="button"
+        (click)="toggleTheme()"
+        class="inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm hover:bg-gray-50 active:scale-[.99] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      >
+        <i-lucide [img]="isDarkTheme() ? moonIcon : sunIcon" class="size-4" />
+        {{ isDarkTheme() ? 'Dark' : 'Light' }}
+      </button>
+
+      <button
+        type="button"
+        (click)="logout()"
+        class="inline-flex items-center gap-1 rounded-md bg-red-600 px-3 py-1.5 text-sm text-white shadow-sm hover:bg-red-700 active:scale-[.99]"
+      >
+        <i-lucide [img]="logOutIcon" class="size-4" />
+        Logout
+      </button>
+    </div>
+
+    <div class="md:hidden flex items-center">
+      <button
+        type="button"
+        (click)="toggleMenu()"
+        class="inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm hover:bg-gray-50 active:scale-[.99] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      >
+        <i-lucide [img]="menuIcon" class="size-4" />
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+@if (menuOpen()) {
+<div class="md:hidden">
+  <div
+    class="fixed inset-0 z-40 bg-black/50"
+    (click)="toggleMenu()"
+    (keydown.enter)="toggleMenu()"
+    (keydown.space)="toggleMenu()"
+    role="button"
+    tabindex="0"
+    aria-label="Close menu"
+  ></div>
+  <div
+    class="fixed inset-y-0 right-0 z-50 w-72 max-w-[80vw] bg-white shadow-xl dark:bg-gray-900"
+  >
+    <div
+      class="flex h-14 items-center justify-between border-b border-gray-200 px-4 dark:border-gray-800"
+    >
+      <span class="font-semibold">Menu</span>
+      <button
+        type="button"
+        (click)="toggleMenu()"
+        class="rounded px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
+        <i-lucide [img]="closeIcon" class="size-4" />
+      </button>
+    </div>
+
+    <div class="flex flex-col gap-2 p-4">
+      <button
+        type="button"
+        (click)="toggleLanguage()"
+        class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 active:scale-[.99] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      >
+        <i-lucide [img]="globeIcon" class="size-4" />
+        {{ currentLanguage() === 'ar' ? 'AR' : 'EN' }}
+      </button>
+      <button
+        type="button"
+        (click)="toggleTheme()"
+        class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50 active:scale-[.99] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+      >
+        <i-lucide [img]="isDarkTheme() ? moonIcon : sunIcon" class="size-4" />
+        {{ isDarkTheme() ? 'Dark' : 'Light' }}
+      </button>
+      <button
+        type="button"
+        (click)="logout()"
+        class="inline-flex items-center gap-2 rounded-md bg-red-600 px-3 py-2 text-sm text-white shadow-sm hover:bg-red-700 active:scale-[.99]"
+      >
+        <i-lucide [img]="logOutIcon" class="size-4" />
+        Logout
+      </button>
+    </div>
+  </div>
+</div>
+}
