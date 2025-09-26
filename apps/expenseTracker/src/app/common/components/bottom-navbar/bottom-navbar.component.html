@@ -1,0 +1,18 @@
+<nav
+  class="fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-gray-800 dark:bg-gray-900/80 md:hidden"
+>
+  <ul class="mx-auto flex max-w-7xl items-center justify-around px-4 py-2">
+    @for (item of menu(); track item.name) {
+    <li>
+      <a
+        [routerLink]="item.link"
+        [routerLinkActive]="['text-blue-600', 'dark:text-blue-400']"
+        class="flex flex-col items-center gap-1 px-3 py-1.5 text-sm text-gray-700 hover:text-blue-600 dark:text-gray-300"
+      >
+        <i-lucide [img]="item.icon" class="size-5" />
+        <span class="text-[11px]">{{ item.name }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+</nav>
