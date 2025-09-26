@@ -4,4 +4,6 @@ export const AppNavigation = {
   login: 'login',
   home: 'home',
   expenses: 'expenses',
+  add: 'add',
+  edit: 'edit',
 };

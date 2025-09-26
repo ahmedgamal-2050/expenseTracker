@@ -16,9 +16,26 @@ export const dashboardRoutes: Route[] = [
   },
   {
     path: AppNavigation.expenses,
-    loadComponent: () =>
-      import('../pages/dashboard/expenses/expenses.component').then(
-        (c) => c.ExpensesComponent
-      ),
+    children: [
+      {
+        path: '',
+        redirectTo: AppNavigation.add,
+        pathMatch: 'full',
+      },
+      {
+        path: '',
+        loadComponent: () =>
+          import('../pages/dashboard/expenses/expenses.component').then(
+            (c) => c.ExpensesComponent
+          ),
+      },
+      {
+        path: AppNavigation.add,
+        loadComponent: () =>
+          import(
+            '../pages/dashboard/expenses/expenses-form/expenses-form.component'
+          ).then((c) => c.ExpensesFormComponent),
+      },
+    ],
   },
 ];

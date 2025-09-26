@@ -5,6 +5,8 @@
   --font-beiruti: 'Beiruti', sans-serif;
 
   --breakpoint-xs: 30rem;
+
+  --text-2xs: 0.625rem;
 }
 
 @layer base {
