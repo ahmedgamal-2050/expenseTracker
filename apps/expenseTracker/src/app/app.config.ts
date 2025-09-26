@@ -36,7 +36,6 @@ export const appConfig: ApplicationConfig = {
       }),
       fallbackLang: 'en',
       lang: 'en',
-      defaultLanguage: 'en',
     }),
     provideAppInitializer(() => {
       const initializerFn = preloadTranslation(inject(TranslateService));
