@@ -1,8 +1,11 @@
 export interface LoginResponse {
   token: string;
-  user: {
-    id: number;
-    name: string;
-    email: string;
-  };
+  message: string;
+  user: User;
+}
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
 }

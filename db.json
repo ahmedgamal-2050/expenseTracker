@@ -1,0 +1,11 @@
+{
+  "login": {
+    "token": "1234567890",
+    "message": "Login successful",
+    "user": {
+      "id": "f701",
+      "name": "Ahmed Gamal",
+      "email": "ahmed.gamal@example.com"
+    }
+  }
+}

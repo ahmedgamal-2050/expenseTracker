@@ -36,12 +36,16 @@ export class LoginComponent {
       return;
     }
 
+    this.successLogin();
+  }
+
+  successLogin() {
     this.isLoading.set(true);
     this.authService.login(this.loginForm().value).subscribe({
       next: (res: LoginResponse) => {
         localStorage.setItem(AppStorage.token, res.token);
         localStorage.setItem(AppStorage.user, JSON.stringify(res.user));
-        this.router.navigate([AppNavigation.dashboard]);
+        this.router.navigate([AppNavigation.dashboard, AppNavigation.home]);
         this.isLoading.set(false);
       },
       error: () => {

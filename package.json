@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx run expenseTracker:serve:development --port 4000 -o"
+    "start": "npx nx run expenseTracker:serve:development --port 4000 -o",
+    "json-server": "json-server --watch db.json --port 4300"
   },
   "private": true,
   "dependencies": {
@@ -51,6 +52,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-preset-angular": "~14.6.1",
     "jest-util": "^29.7.0",
+    "json-server": "^1.0.0-beta.3",
     "nx": "21.5.3",
     "prettier": "^2.6.2",
     "ts-jest": "^29.1.0",

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { LoginConstants } from './login/login.constants';
+import { Endpoints } from '../../common/constants/endpoints.constants';
+import { Observable } from 'rxjs';
+import { LoginResponse } from './login/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { LoginConstants } from './login/login.constants';
 export class AuthService {
   private http = inject(HttpClient);
 
-  login(data: { email: string; password: string }) {
-    //return this.http.post('https://localhost:3000/auth/login', data);
-    return of(LoginConstants);
+  login(data: { email: string; password: string }): Observable<LoginResponse> {
+    const url = Endpoints.auth.login;
+    return this.http.get<LoginResponse>(url);
   }
 }
