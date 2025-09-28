@@ -4,3 +4,10 @@ export interface Expense {
   date: string;
   receipt: string | null;
 }
+
+export interface Category {
+  id: number;
+  key: string;
+  label: string;
+  isSelected?: boolean;
+}

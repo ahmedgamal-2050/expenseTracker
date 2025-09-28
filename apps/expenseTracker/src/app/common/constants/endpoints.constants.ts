@@ -12,5 +12,9 @@ export const Endpoints = {
     currency: {
       get: environment.apiUrl + '/currency',
     },
+    categories: {
+      get: environment.apiUrl + '/categories',
+      add: environment.apiUrl + '/categories',
+    },
   },
 };

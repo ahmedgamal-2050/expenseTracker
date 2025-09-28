@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -12,8 +12,10 @@ import { LucideAngularModule, icons } from 'lucide-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppNavigation } from '../../../../common/constants/app-navigation.constants';
 import { AppStorage } from '../../../../common/constants/app-storage.constants';
-import { CategoryStylePipe } from '../../../../common/pipes/category-style/category-style.pipe';
-import { CategoryIconPipe } from '../../../../common/pipes/category-icon/category-icon.pipe';
+import { CategoryOptionPipe } from '../../../../common/pipes/category-option/category-option.pipe';
+import { CategoryService } from '../../../../common/services/category/category.service';
+import { Category } from '../expenses.model';
+import { ExpensesService } from '../../../../common/services/expenses/expenses.service';
 
 @Component({
   selector: 'app-expenses-form',
@@ -21,54 +23,27 @@ import { CategoryIconPipe } from '../../../../common/pipes/category-icon/categor
     CommonModule,
     ReactiveFormsModule,
     LucideAngularModule,
-    CategoryStylePipe,
-    CategoryIconPipe,
+    CategoryOptionPipe,
   ],
   templateUrl: './expenses-form.component.html',
   styleUrl: './expenses-form.component.scss',
 })
-export class ExpensesFormComponent {
+export class ExpensesFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private translate = inject(TranslateService);
+  private categoryService = inject(CategoryService);
+  private expensesService = inject(ExpensesService);
 
   calendarIcon = icons.Calendar;
   imageIcon = icons.ImagePlus;
   chevronDown = icons.ChevronDown;
 
-  categories = signal([
-    {
-      key: 'groceries',
-      label: 'Groceries',
-      isSelected: false,
-    },
-    {
-      key: 'entertainment',
-      label: 'Entertainment',
-      isSelected: false,
-    },
-    { key: 'gas', label: 'Gas', isSelected: false },
-    {
-      key: 'shopping',
-      label: 'Shopping',
-      isSelected: false,
-    },
-    {
-      key: 'newspaper',
-      label: 'News Paper',
-      isSelected: false,
-    },
-    {
-      key: 'transport',
-      label: 'Transport',
-      isSelected: false,
-    },
-    { key: 'rent', label: 'Rent', isSelected: false },
-  ]);
+  categories = signal<Category[]>([]);
   plusIcon = icons.Plus;
 
   form: FormGroup = this.fb.group({
-    category: new FormControl<string | null>(null, Validators.required),
+    category: new FormControl<string>('', Validators.required),
     amount: new FormControl<number | null>(null, [
       Validators.required,
       Validators.min(0.01),
@@ -79,14 +54,30 @@ export class ExpensesFormComponent {
 
   isSubmitDisabled = computed(() => this.form.invalid);
 
-  onQuickCategorySelect(categoryElement: EventTarget | null) {
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories.set(
+        categories.map((category) => ({ ...category, isSelected: false }))
+      );
+    });
+  }
+
+  onCategorySelect(categoryElement: EventTarget | null) {
     const categoryKey = (categoryElement as HTMLSelectElement).value;
-    if (!categoryKey || categoryKey === 'add') {
-      // placeholder for add category flow
-      return;
-    }
+
+    this.onQuickCategorySelect(categoryKey ?? '');
+  }
+
+  onQuickCategorySelect(categoryKey: string) {
     this.categories.update((categories) =>
-      categories.map((c) => ({ ...c, isSelected: c.key === categoryKey }))
+      categories.map((category) => ({
+        ...category,
+        isSelected: category.key === categoryKey,
+      }))
     );
     this.form.patchValue({ category: categoryKey });
   }
@@ -97,23 +88,23 @@ export class ExpensesFormComponent {
     this.form.patchValue({ receipt: file });
   }
 
-  onAddCategory() {
+  handleAddCategory() {
     console.log('add category');
   }
 
   submit() {
-    console.log('🚀 ~ ExpensesFormComponent ~ submit ~ this.form:', this.form);
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
+    this.expensesService.addExpenses(this.form.value).subscribe(() => {
+      const expenses = JSON.parse(
+        localStorage.getItem(AppStorage.expenses) ?? '[]'
+      );
+      expenses.push(this.form.value);
+      localStorage.setItem(AppStorage.expenses, JSON.stringify(expenses));
 
-    const expenses = JSON.parse(
-      localStorage.getItem(AppStorage.expenses) ?? '[]'
-    );
-    expenses.push(this.form.value);
-    localStorage.setItem(AppStorage.expenses, JSON.stringify(expenses));
-    // Simulate save, then navigate back to expenses list
-    this.router.navigate(['/' + AppNavigation.dashboard, AppNavigation.home]);
+      this.router.navigate(['/' + AppNavigation.dashboard, AppNavigation.home]);
+    });
   }
 }

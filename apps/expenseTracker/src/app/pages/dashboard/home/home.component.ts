@@ -1,21 +1,21 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { LucideAngularModule, icons } from 'lucide-angular';
 import { AppStorage } from '../../../common/constants/app-storage.constants';
-import { CategoryStylePipe } from '../../../common/pipes/category-style/category-style.pipe';
+import { CategoryOptionPipe } from '../../../common/pipes/category-option/category-option.pipe';
 import { DatePipe } from '@angular/common';
-import { CategoryIconPipe } from '../../../common/pipes/category-icon/category-icon.pipe';
 import { Expense } from '../expenses/expenses.model';
 import { User } from '../../../common/models/user.model';
 import { CurrencyService } from '../../../common/services/currency/currency.service';
 import { DefaultCurrency } from '../../../common/constants/currency-api.constants';
 import { CurrencyConversionPipe } from '../../../common/pipes/currency-conversion/currency-conversion.pipe';
+import { ExpensesService } from '../../../common/services/expenses/expenses.service';
+import { ApiArrayResponse, Meta } from '../../../common/models/api-array.model';
 
 @Component({
   selector: 'app-home',
   imports: [
     LucideAngularModule,
-    CategoryStylePipe,
-    CategoryIconPipe,
+    CategoryOptionPipe,
     DatePipe,
     CurrencyConversionPipe,
   ],
@@ -23,6 +23,7 @@ import { CurrencyConversionPipe } from '../../../common/pipes/currency-conversio
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  private expensesService = inject(ExpensesService);
   private currencyService = inject(CurrencyService);
 
   currencyValue = signal<number>(1);
@@ -49,13 +50,17 @@ export class HomeComponent implements OnInit {
     signal<(typeof this.periodOptions)[number]['key']>('this_month');
   month = computed(
     () =>
-      this.periodOptions.find((p) => p.key === this.selectedPeriod())?.label ??
-      'This month'
+      this.periodOptions.find((period) => period.key === this.selectedPeriod())
+        ?.label ?? 'This month'
   );
 
-  expenses = signal<Expense[]>(
-    JSON.parse(localStorage.getItem(AppStorage.expenses) ?? '[]')
-  );
+  expenses = signal<Expense[]>([]);
+  filteredExpenses = signal<Expense[]>([]);
+  meta = signal<Meta>({
+    total: 0,
+    page: 1,
+    limit: 10,
+  });
   user = signal<User>(
     JSON.parse(localStorage.getItem(AppStorage.user) ?? '{}')
   );
@@ -108,22 +113,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  filteredExpenses = computed(() => {
-    const { start, end } = this.getPeriodRange(this.selectedPeriod());
-    return this.expenses().filter((e) => {
-      if (!e?.date) return false;
-      const d = new Date(e.date);
-      return d >= start && d <= end;
-    });
-  });
-
   totalIncome = signal<number>(0);
   totalExpenses = computed(() =>
-    this.filteredExpenses().reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
+    this.filteredExpenses().reduce(
+      (sum, expense) => sum + (Number(expense.amount) || 0),
+      0
+    )
   );
   totalBalance = computed(() => this.totalIncome() - this.totalExpenses());
-
-  recent = computed(() => this.filteredExpenses().slice(-4).reverse());
 
   toggleFilter() {
     this.filterOpen.set(!this.filterOpen());
@@ -131,16 +128,41 @@ export class HomeComponent implements OnInit {
 
   selectPeriod(key: (typeof this.periodOptions)[number]['key']) {
     this.selectedPeriod.set(key);
+    this.getExpensesByPeriod();
     this.filterOpen.set(false);
   }
 
   ngOnInit(): void {
     this.getCurrency();
+    this.getExpenses();
   }
 
   getCurrency() {
     this.currencyService.getCurrency().subscribe((currency) => {
       this.currencyValue.set(currency.data[DefaultCurrency].value);
     });
+  }
+
+  getExpenses() {
+    this.expensesService
+      .getExpenses()
+      .subscribe((response: ApiArrayResponse<Expense>) => {
+        const { data, meta } = response;
+        this.expenses.set(data);
+        this.selectedPeriod.set('this_month');
+        this.getExpensesByPeriod();
+        this.meta.set(meta);
+      });
+  }
+
+  getExpensesByPeriod() {
+    const { start, end } = this.getPeriodRange(this.selectedPeriod());
+    this.filteredExpenses.set(
+      this.expenses().filter((expense) => {
+        if (!expense?.date) return false;
+        const todayDate = new Date(expense.date);
+        return todayDate >= start && todayDate <= end;
+      })
+    );
   }
 }

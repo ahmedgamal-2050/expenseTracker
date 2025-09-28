@@ -7,5 +7,163 @@
       "name": "Ahmed Gamal",
       "email": "ahmed.gamal@example.com"
     }
-  }
+  },
+  "expenses": [
+    {
+      "id": "c9fd",
+      "category": "transport",
+      "amount": 2.5,
+      "date": "2025-09-21",
+      "receipt": null
+    },
+    {
+      "id": "c9fc",
+      "category": "shopping",
+      "amount": 2.05,
+      "date": "2025-09-19",
+      "receipt": null
+    },
+    {
+      "id": "c9fb",
+      "category": "groceries",
+      "amount": 2.75,
+      "date": "2025-09-18",
+      "receipt": null
+    },
+    {
+      "id": "c9fa",
+      "category": "entertainment",
+      "amount": 2.25,
+      "date": "2025-09-15",
+      "receipt": null
+    },
+    {
+      "id": "c9f8",
+      "category": "entertainment",
+      "amount": 2.5,
+      "date": "2025-09-12",
+      "receipt": null
+    },
+    {
+      "id": "c9f7",
+      "category": "transport",
+      "amount": 3,
+      "date": "2025-09-09",
+      "receipt": null
+    },
+    {
+      "id": "c9f1",
+      "category": "rent",
+      "amount": 100,
+      "date": "2025-08-01",
+      "receipt": null
+    },
+    {
+      "id": "c9ee",
+      "category": "newspaper",
+      "amount": 0.25,
+      "date": "2025-08-03",
+      "receipt": null
+    },
+    {
+      "id": "c9ef",
+      "category": "transport",
+      "amount": 5,
+      "date": "2025-08-05",
+      "receipt": null
+    },
+    {
+      "id": "c9f0",
+      "category": "shopping",
+      "amount": 19.65,
+      "date": "2025-08-05",
+      "receipt": null
+    },
+    {
+      "id": "c9ed",
+      "category": "gas",
+      "amount": 9,
+      "date": "2025-08-13",
+      "receipt": null
+    },
+    {
+      "id": "c9f3",
+      "category": "newspaper",
+      "amount": 0.25,
+      "date": "2025-09-01",
+      "receipt": null
+    },
+    {
+      "id": "c95f",
+      "category": "rent",
+      "amount": 100,
+      "date": "2025-09-02",
+      "receipt": null
+    },
+    {
+      "id": "c9f4",
+      "category": "transport",
+      "amount": 5,
+      "date": "2025-09-05",
+      "receipt": null
+    },
+    {
+      "id": "c9f5",
+      "category": "shopping",
+      "amount": 19.65,
+      "date": "2025-09-05",
+      "receipt": null
+    },
+    {
+      "id": "c9f6",
+      "category": "transport",
+      "amount": 2,
+      "date": "2025-09-06",
+      "receipt": null
+    },
+    {
+      "id": "c9f2",
+      "category": "gas",
+      "amount": 9,
+      "date": "2025-09-08",
+      "receipt": null
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "key": "gas",
+      "label": "Gas"
+    },
+    {
+      "id": 2,
+      "key": "transport",
+      "label": "Transport"
+    },
+    {
+      "id": 3,
+      "key": "entertainment",
+      "label": "Entertainment"
+    },
+    {
+      "id": 4,
+      "key": "groceries",
+      "label": "Groceries"
+    },
+    {
+      "id": 5,
+      "key": "shopping",
+      "label": "Shopping"
+    },
+    {
+      "id": 6,
+      "key": "newspaper",
+      "label": "News Paper"
+    },
+    {
+      "id": 7,
+      "key": "rent",
+      "label": "Rent"
+    }
+  ]
 }
