@@ -8,21 +8,47 @@
         <p class="text-sm opacity-90">Good Morning</p>
         <p class="text-base font-semibold">{{ user().name }}</p>
       </div>
-      <button
-        type="button"
-        class="inline-flex items-center gap-1 rounded-md bg-white text-gray-900 px-2 py-1 text-xs"
-      >
-        {{ month() }}
-        <i-lucide [img]="caretDown" class="size-4" />
-      </button>
+
+      <div class="relative">
+        <button
+          type="button"
+          class="inline-flex items-center gap-1 rounded-md bg-white text-gray-900 px-2 py-1 text-xs"
+          (click)="toggleFilter()"
+          aria-haspopup="listbox"
+          [attr.aria-expanded]="filterOpen()"
+        >
+          {{ month() }}
+          <i-lucide [img]="caretDown" class="size-4" />
+        </button>
+
+        @if (filterOpen()) {
+        <ul
+          class="absolute right-0 z-10 mt-2 w-40 rounded-md border border-gray-200 bg-white p-1 text-gray-900 shadow-lg"
+          role="listbox"
+        >
+          @for (p of periodOptions; track p.key) {
+          <li>
+            <button
+              type="button"
+              class="w-full rounded px-2 py-1 text-left text-xs hover:bg-gray-100"
+              (click)="selectPeriod(p.key)"
+            >
+              {{ p.label }}
+            </button>
+          </li>
+          }
+        </ul>
+        }
+      </div>
     </div>
 
     <div
       class="rounded-xl bg-marine-blue-500 p-4 relative top-10 lg:top-0 lg:mt-4"
     >
-      <div class="flex items-center justify-between">
-        <span class="text-sm opacity-90">Total Balance</span>
-        <i-lucide [img]="menuIcon" class="size-5" />
+      <div class="flex items-center gap-1">
+        <span class="text-sm">Total Balance</span>
+
+        <i-lucide [img]="caretUp" class="size-4" />
       </div>
 
       <p class="mt-1 text-3xl font-bold">
@@ -30,24 +56,34 @@
       </p>
 
       <div class="mt-3 grid grid-cols-2 gap-4 text-sm">
-        <div class="flex items-center gap-2">
-          <i-lucide [img]="incomeIcon" class="size-5" />
-          <div>
-            <p class="opacity-90">Income</p>
-            <p class="font-semibold">
-              $ {{ totalIncome() | number : '1.0-0' }}
-            </p>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <div
+              class="flex items-center justify-center rounded-full bg-marine-blue-400 p-1"
+            >
+              <i-lucide [img]="incomeIcon" class="size-3" />
+            </div>
+
+            <p>Income</p>
           </div>
+
+          <p class="font-semibold">$ {{ totalIncome() | number : '1.0-0' }}</p>
         </div>
 
-        <div class="flex items-center gap-2 justify-end">
-          <i-lucide [img]="expenseIcon" class="size-5" />
-          <div class="text-end">
-            <p class="opacity-90">Expenses</p>
-            <p class="font-semibold">
-              $ {{ totalExpenses() | number : '1.0-0' }}
-            </p>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <div
+              class="flex items-center justify-center rounded-full bg-marine-blue-400 p-1"
+            >
+              <i-lucide [img]="expenseIcon" class="size-3" />
+            </div>
+
+            <p>Expenses</p>
           </div>
+
+          <p class="font-semibold">
+            $ {{ totalExpenses() | number : '1.0-0' }}
+          </p>
         </div>
       </div>
     </div>
@@ -81,7 +117,9 @@
 
         <div class="text-end">
           <p class="text-sm font-semibold">- $ {{ item.amount }}</p>
-          <p class="text-xs opacity-70">Today 12:00 PM</p>
+          <p class="text-xs opacity-70">
+            {{ item.date | date : 'MMM d, yyyy hh:mm a' }}
+          </p>
         </div>
       </li>
       }
