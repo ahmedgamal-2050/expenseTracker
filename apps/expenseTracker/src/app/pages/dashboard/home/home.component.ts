@@ -1,25 +1,33 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { LucideAngularModule, icons } from 'lucide-angular';
 import { AppStorage } from '../../../common/constants/app-storage.constants';
 import { CategoryStylePipe } from '../../../common/pipes/category-style/category-style.pipe';
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { CategoryIconPipe } from '../../../common/pipes/category-icon/category-icon.pipe';
 import { Expense } from '../expenses/expenses.model';
 import { User } from '../../../common/models/user.model';
+import { CurrencyService } from '../../../common/services/currency/currency.service';
+import { DefaultCurrency } from '../../../common/constants/currency-api.constants';
+import { CurrencyConversionPipe } from '../../../common/pipes/currency-conversion/currency-conversion.pipe';
 
 @Component({
   selector: 'app-home',
   imports: [
     LucideAngularModule,
-    DecimalPipe,
     CategoryStylePipe,
     CategoryIconPipe,
     DatePipe,
+    CurrencyConversionPipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  private currencyService = inject(CurrencyService);
+
+  currencyValue = signal<number>(1);
+  defaultCurrency = signal<string>(DefaultCurrency);
+
   caretDown = icons.ChevronDown;
   caretUp = icons.ChevronUp;
   incomeIcon = icons.MoveDown;
@@ -109,9 +117,7 @@ export class HomeComponent {
     });
   });
 
-  totalIncome = computed(() =>
-    this.filteredExpenses().reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
-  );
+  totalIncome = signal<number>(0);
   totalExpenses = computed(() =>
     this.filteredExpenses().reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
   );
@@ -126,5 +132,15 @@ export class HomeComponent {
   selectPeriod(key: (typeof this.periodOptions)[number]['key']) {
     this.selectedPeriod.set(key);
     this.filterOpen.set(false);
+  }
+
+  ngOnInit(): void {
+    this.getCurrency();
+  }
+
+  getCurrency() {
+    this.currencyService.getCurrency().subscribe((currency) => {
+      this.currencyValue.set(currency.data[DefaultCurrency].value);
+    });
   }
 }

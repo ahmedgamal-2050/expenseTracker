@@ -1,0 +1,777 @@
+export const CurrencyApiConstants = {
+  apiUrl: 'https://api.currencyapi.com/v3/latest?apikey={apiKey}',
+};
+
+export const DefaultCurrency = 'EGP';
+
+export const CurrencyApiResponse = {
+  meta: {
+    last_updated_at: '2025-09-27T23:59:59Z',
+  },
+  data: {
+    ADA: {
+      code: 'ADA',
+      value: 1.2789560387,
+    },
+    AED: {
+      code: 'AED',
+      value: 3.6720904923,
+    },
+    AFN: {
+      code: 'AFN',
+      value: 67.4145581128,
+    },
+    ALL: {
+      code: 'ALL',
+      value: 82.472726178,
+    },
+    AMD: {
+      code: 'AMD',
+      value: 381.2849943192,
+    },
+    ANG: {
+      code: 'ANG',
+      value: 1.7252903292,
+    },
+    AOA: {
+      code: 'AOA',
+      value: 909.7971236877,
+    },
+    ARB: {
+      code: 'ARB',
+      value: 2.3546723304,
+    },
+    ARS: {
+      code: 'ARS',
+      value: 1328.9688082827,
+    },
+    AUD: {
+      code: 'AUD',
+      value: 1.5277702915,
+    },
+    AVAX: {
+      code: 'AVAX',
+      value: 0.0347125804,
+    },
+    AWG: {
+      code: 'AWG',
+      value: 1.79,
+    },
+    AZN: {
+      code: 'AZN',
+      value: 1.7,
+    },
+    BAM: {
+      code: 'BAM',
+      value: 1.6703203049,
+    },
+    BBD: {
+      code: 'BBD',
+      value: 2,
+    },
+    BDT: {
+      code: 'BDT',
+      value: 121.7375337269,
+    },
+    BGN: {
+      code: 'BGN',
+      value: 1.671750245,
+    },
+    BHD: {
+      code: 'BHD',
+      value: 0.376,
+    },
+    BIF: {
+      code: 'BIF',
+      value: 2944.5056989471,
+    },
+    BMD: {
+      code: 'BMD',
+      value: 1,
+    },
+    BNB: {
+      code: 'BNB',
+      value: 0.0010307219,
+    },
+    BND: {
+      code: 'BND',
+      value: 1.2904701912,
+    },
+    BOB: {
+      code: 'BOB',
+      value: 6.9095809363,
+    },
+    BRL: {
+      code: 'BRL',
+      value: 5.3508007396,
+    },
+    BSD: {
+      code: 'BSD',
+      value: 1,
+    },
+    BTC: {
+      code: 'BTC',
+      value: 0.0000090971,
+    },
+    BTN: {
+      code: 'BTN',
+      value: 79.4764034308,
+    },
+    BWP: {
+      code: 'BWP',
+      value: 13.2793221949,
+    },
+    BYN: {
+      code: 'BYN',
+      value: 3.3777155898,
+    },
+    BYR: {
+      code: 'BYR',
+      value: 33777.155460999,
+    },
+    BZD: {
+      code: 'BZD',
+      value: 2,
+    },
+    CAD: {
+      code: 'CAD',
+      value: 1.394220216,
+    },
+    CDF: {
+      code: 'CDF',
+      value: 2697.1822947635,
+    },
+    CHF: {
+      code: 'CHF',
+      value: 0.7977601538,
+    },
+    CLF: {
+      code: 'CLF',
+      value: 0.0239500029,
+    },
+    CLP: {
+      code: 'CLP',
+      value: 959.9870040727,
+    },
+    CNY: {
+      code: 'CNY',
+      value: 7.1318109424,
+    },
+    COP: {
+      code: 'COP',
+      value: 3899.8296934773,
+    },
+    CRC: {
+      code: 'CRC',
+      value: 503.815604952,
+    },
+    CUC: {
+      code: 'CUC',
+      value: 1,
+    },
+    CUP: {
+      code: 'CUP',
+      value: 24,
+    },
+    CVE: {
+      code: 'CVE',
+      value: 94.3878854864,
+    },
+    CZK: {
+      code: 'CZK',
+      value: 20.7262536247,
+    },
+    DAI: {
+      code: 'DAI',
+      value: 0.9999049953,
+    },
+    DJF: {
+      code: 'DJF',
+      value: 177.721,
+    },
+    DKK: {
+      code: 'DKK',
+      value: 6.3777906745,
+    },
+    DOP: {
+      code: 'DOP',
+      value: 61.9680573833,
+    },
+    DOT: {
+      code: 'DOT',
+      value: 0.2567825706,
+    },
+    DZD: {
+      code: 'DZD',
+      value: 130.0863371094,
+    },
+    EGP: {
+      code: 'EGP',
+      value: 48.1370051809,
+    },
+    ERN: {
+      code: 'ERN',
+      value: 15,
+    },
+    ETB: {
+      code: 'ETB',
+      value: 143.9532839079,
+    },
+    ETH: {
+      code: 'ETH',
+      value: 0.0002487962,
+    },
+    EUR: {
+      code: 'EUR',
+      value: 0.8542501546,
+    },
+    FJD: {
+      code: 'FJD',
+      value: 2.2913104582,
+    },
+    FKP: {
+      code: 'FKP',
+      value: 0.7459254954,
+    },
+    GBP: {
+      code: 'GBP',
+      value: 0.7461001103,
+    },
+    GEL: {
+      code: 'GEL',
+      value: 2.7029303604,
+    },
+    GGP: {
+      code: 'GGP',
+      value: 0.7459254817,
+    },
+    GHS: {
+      code: 'GHS',
+      value: 12.3541621647,
+    },
+    GIP: {
+      code: 'GIP',
+      value: 0.7459254512,
+    },
+    GMD: {
+      code: 'GMD',
+      value: 73.2943202567,
+    },
+    GNF: {
+      code: 'GNF',
+      value: 8703.6595368854,
+    },
+    GTQ: {
+      code: 'GTQ',
+      value: 7.6475612664,
+    },
+    GYD: {
+      code: 'GYD',
+      value: 208.883060437,
+    },
+    HKD: {
+      code: 'HKD',
+      value: 7.7774512886,
+    },
+    HNL: {
+      code: 'HNL',
+      value: 26.1814148218,
+    },
+    HRK: {
+      code: 'HRK',
+      value: 6.3160710477,
+    },
+    HTG: {
+      code: 'HTG',
+      value: 133.0908709073,
+    },
+    HUF: {
+      code: 'HUF',
+      value: 333.665386484,
+    },
+    IDR: {
+      code: 'IDR',
+      value: 16753.588973908,
+    },
+    ILS: {
+      code: 'ILS',
+      value: 3.3486704071,
+    },
+    IMP: {
+      code: 'IMP',
+      value: 0.7459254535,
+    },
+    INR: {
+      code: 'INR',
+      value: 88.6295100027,
+    },
+    IQD: {
+      code: 'IQD',
+      value: 1308.6303070002,
+    },
+    IRR: {
+      code: 'IRR',
+      value: 42000.512432343,
+    },
+    ISK: {
+      code: 'ISK',
+      value: 121.0145558579,
+    },
+    JEP: {
+      code: 'JEP',
+      value: 0.7459254689,
+    },
+    JMD: {
+      code: 'JMD',
+      value: 159.6578622642,
+    },
+    JOD: {
+      code: 'JOD',
+      value: 0.71,
+    },
+    JPY: {
+      code: 'JPY',
+      value: 149.4855888946,
+    },
+    KES: {
+      code: 'KES',
+      value: 128.9973215514,
+    },
+    KGS: {
+      code: 'KGS',
+      value: 87.9348970202,
+    },
+    KHR: {
+      code: 'KHR',
+      value: 4002.1715614554,
+    },
+    KMF: {
+      code: 'KMF',
+      value: 421.5809127818,
+    },
+    KPW: {
+      code: 'KPW',
+      value: 900.0001257159,
+    },
+    KRW: {
+      code: 'KRW',
+      value: 1408.0848960115,
+    },
+    KWD: {
+      code: 'KWD',
+      value: 0.3046600575,
+    },
+    KYD: {
+      code: 'KYD',
+      value: 0.83333,
+    },
+    KZT: {
+      code: 'KZT',
+      value: 543.1475818001,
+    },
+    LAK: {
+      code: 'LAK',
+      value: 21572.102858101,
+    },
+    LBP: {
+      code: 'LBP',
+      value: 89494.982291448,
+    },
+    LKR: {
+      code: 'LKR',
+      value: 301.0512807858,
+    },
+    LRD: {
+      code: 'LRD',
+      value: 181.1961605762,
+    },
+    LSL: {
+      code: 'LSL',
+      value: 17.3418122885,
+    },
+    LTC: {
+      code: 'LTC',
+      value: 0.0095628325,
+    },
+    LTL: {
+      code: 'LTL',
+      value: 2.9496658714,
+    },
+    LVL: {
+      code: 'LVL',
+      value: 0.600389554,
+    },
+    LYD: {
+      code: 'LYD',
+      value: 5.4062306707,
+    },
+    MAD: {
+      code: 'MAD',
+      value: 9.0760317984,
+    },
+    MATIC: {
+      code: 'MATIC',
+      value: 4.4720269112,
+    },
+    MDL: {
+      code: 'MDL',
+      value: 16.6615925424,
+    },
+    MGA: {
+      code: 'MGA',
+      value: 4474.2192882903,
+    },
+    MKD: {
+      code: 'MKD',
+      value: 52.6003801671,
+    },
+    MMK: {
+      code: 'MMK',
+      value: 2098.2910036121,
+    },
+    MNT: {
+      code: 'MNT',
+      value: 3595.0794333289,
+    },
+    MOP: {
+      code: 'MOP',
+      value: 7.9759915647,
+    },
+    MRO: {
+      code: 'MRO',
+      value: 356.999828,
+    },
+    MRU: {
+      code: 'MRU',
+      value: 39.8685284906,
+    },
+    MUR: {
+      code: 'MUR',
+      value: 45.6792150909,
+    },
+    MVR: {
+      code: 'MVR',
+      value: 15.4524029182,
+    },
+    MWK: {
+      code: 'MWK',
+      value: 1733.636581821,
+    },
+    MXN: {
+      code: 'MXN',
+      value: 18.3559818996,
+    },
+    MYR: {
+      code: 'MYR',
+      value: 4.2211404617,
+    },
+    MZN: {
+      code: 'MZN',
+      value: 63.5299367871,
+    },
+    NAD: {
+      code: 'NAD',
+      value: 17.2951823046,
+    },
+    NGN: {
+      code: 'NGN',
+      value: 1482.8287679192,
+    },
+    NIO: {
+      code: 'NIO',
+      value: 36.6304311065,
+    },
+    NOK: {
+      code: 'NOK',
+      value: 9.9759815668,
+    },
+    NPR: {
+      code: 'NPR',
+      value: 141.25466352,
+    },
+    NZD: {
+      code: 'NZD',
+      value: 1.7319402543,
+    },
+    OMR: {
+      code: 'OMR',
+      value: 0.3840500552,
+    },
+    OP: {
+      code: 'OP',
+      value: 1.4846329968,
+    },
+    PAB: {
+      code: 'PAB',
+      value: 0.9989501664,
+    },
+    PEN: {
+      code: 'PEN',
+      value: 3.4919206158,
+    },
+    PGK: {
+      code: 'PGK',
+      value: 4.1417107583,
+    },
+    PHP: {
+      code: 'PHP',
+      value: 58.1506606572,
+    },
+    PKR: {
+      code: 'PKR',
+      value: 281.2349898424,
+    },
+    PLN: {
+      code: 'PLN',
+      value: 3.6427404016,
+    },
+    PYG: {
+      code: 'PYG',
+      value: 7068.3511995684,
+    },
+    QAR: {
+      code: 'QAR',
+      value: 3.639280599,
+    },
+    RON: {
+      code: 'RON',
+      value: 4.3413708361,
+    },
+    RSD: {
+      code: 'RSD',
+      value: 99.5866737913,
+    },
+    RUB: {
+      code: 'RUB',
+      value: 83.6530537113,
+    },
+    RWF: {
+      code: 'RWF',
+      value: 1451.2539877823,
+    },
+    SAR: {
+      code: 'SAR',
+      value: 3.7474506372,
+    },
+    SBD: {
+      code: 'SBD',
+      value: 8.2304796557,
+    },
+    SCR: {
+      code: 'SCR',
+      value: 14.9140122026,
+    },
+    SDG: {
+      code: 'SDG',
+      value: 601.5,
+    },
+    SEK: {
+      code: 'SEK',
+      value: 9.4052914719,
+    },
+    SGD: {
+      code: 'SGD',
+      value: 1.2904002114,
+    },
+    SHP: {
+      code: 'SHP',
+      value: 0.7461001288,
+    },
+    SLE: {
+      code: 'SLE',
+      value: 22.7848843127,
+    },
+    SLL: {
+      code: 'SLL',
+      value: 22723.552074181,
+    },
+    SOL: {
+      code: 'SOL',
+      value: 0.0049095439,
+    },
+    SOS: {
+      code: 'SOS',
+      value: 571.5230681959,
+    },
+    SRD: {
+      code: 'SRD',
+      value: 37.861466927,
+    },
+    STD: {
+      code: 'STD',
+      value: 21017.264737494,
+    },
+    STN: {
+      code: 'STN',
+      value: 21.0172653011,
+    },
+    SVC: {
+      code: 'SVC',
+      value: 8.75,
+    },
+    SYP: {
+      code: 'SYP',
+      value: 13001.84393481,
+    },
+    SZL: {
+      code: 'SZL',
+      value: 17.3350925849,
+    },
+    THB: {
+      code: 'THB',
+      value: 32.1892745792,
+    },
+    TJS: {
+      code: 'TJS',
+      value: 9.3658916944,
+    },
+    TMT: {
+      code: 'TMT',
+      value: 3.5,
+    },
+    TND: {
+      code: 'TND',
+      value: 2.9088202917,
+    },
+    TOP: {
+      code: 'TOP',
+      value: 2.3468202506,
+    },
+    TRX: {
+      code: 'TRX',
+      value: 2.9366006578,
+    },
+    TRY: {
+      code: 'TRY',
+      value: 41.4801873087,
+    },
+    TTD: {
+      code: 'TTD',
+      value: 6.7513607198,
+    },
+    TWD: {
+      code: 'TWD',
+      value: 30.4798960355,
+    },
+    TZS: {
+      code: 'TZS',
+      value: 2432.6391551314,
+    },
+    UAH: {
+      code: 'UAH',
+      value: 41.6243352834,
+    },
+    UGX: {
+      code: 'UGX',
+      value: 3491.8119502968,
+    },
+    USD: {
+      code: 'USD',
+      value: 1,
+    },
+    USDC: {
+      code: 'USDC',
+      value: 0.9996628334,
+    },
+    USDT: {
+      code: 'USDT',
+      value: 0.9989623683,
+    },
+    UYU: {
+      code: 'UYU',
+      value: 39.8985354945,
+    },
+    UZS: {
+      code: 'UZS',
+      value: 12154.876968491,
+    },
+    VEF: {
+      code: 'VEF',
+      value: 17338756.902922,
+    },
+    VES: {
+      code: 'VES',
+      value: 173.3875680961,
+    },
+    VND: {
+      code: 'VND',
+      value: 26383.154486138,
+    },
+    VUV: {
+      code: 'VUV',
+      value: 120.3032345064,
+    },
+    WST: {
+      code: 'WST',
+      value: 2.7979929819,
+    },
+    XAF: {
+      code: 'XAF',
+      value: 560.3540510323,
+    },
+    XAG: {
+      code: 'XAG',
+      value: 0.0217145917,
+    },
+    XAU: {
+      code: 'XAU',
+      value: 0.0002657661,
+    },
+    XCD: {
+      code: 'XCD',
+      value: 2.7,
+    },
+    XCG: {
+      code: 'XCG',
+      value: 1.7970050777,
+    },
+    XDR: {
+      code: 'XDR',
+      value: 0.729230132,
+    },
+    XOF: {
+      code: 'XOF',
+      value: 560.3540377998,
+    },
+    XPD: {
+      code: 'XPD',
+      value: 0.0007864734,
+    },
+    XPF: {
+      code: 'XPF',
+      value: 101.8585442254,
+    },
+    XPT: {
+      code: 'XPT',
+      value: 0.0006355278,
+    },
+    XRP: {
+      code: 'XRP',
+      value: 0.3559270424,
+    },
+    YER: {
+      code: 'YER',
+      value: 238.9074616138,
+    },
+    ZAR: {
+      code: 'ZAR',
+      value: 17.2957722854,
+    },
+    ZMK: {
+      code: 'ZMK',
+      value: 9001.2,
+    },
+    ZMW: {
+      code: 'ZMW',
+      value: 23.7657736532,
+    },
+    ZWG: {
+      code: 'ZWG',
+      value: 26.646673143,
+    },
+    ZWL: {
+      code: 'ZWL',
+      value: 66582.68722628,
+    },
+  },
+};
