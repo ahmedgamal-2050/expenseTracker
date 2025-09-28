@@ -1,6 +1,8 @@
-<section class="max-w-md mx-auto pt-4 pb-24">
+<section class="lg:grid lg:grid-cols-4 lg:gap-6">
   <!-- Header card -->
-  <div class="relative rounded-2xl bg-blue-600 p-4 text-white shadow-lg">
+  <div
+    class="relative rounded-2xl bg-blue-600 p-4 text-white shadow-lg lg:col-span-2"
+  >
     <div class="flex items-start justify-between">
       <div>
         <p class="text-sm opacity-90">Good Morning</p>
@@ -15,7 +17,9 @@
       </button>
     </div>
 
-    <div class="rounded-xl bg-marine-blue-500 p-4 relative top-10">
+    <div
+      class="rounded-xl bg-marine-blue-500 p-4 relative top-10 lg:top-0 lg:mt-4"
+    >
       <div class="flex items-center justify-between">
         <span class="text-sm opacity-90">Total Balance</span>
         <i-lucide [img]="menuIcon" class="size-5" />
@@ -50,16 +54,16 @@
   </div>
 
   <!-- Recent expenses -->
-  <div class="mt-12 px-6">
+  <div class="mt-12 lg:mt-0 lg:col-span-2">
     <div class="mb-2 flex items-center justify-between">
       <h2 class="text-base font-semibold">Recent Expenses</h2>
       <button class="text-xs text-blue-600">see all</button>
     </div>
 
-    <ul class="grid grid-cols-[repeat(auto-fill,minmax(24rem,1fr))] gap-3">
+    <ul class="grid md:grid-cols-2 lg:grid-cols-1 gap-3">
       @for (item of recent(); track $index) {
       <li
-        class="flex items-center justify-between rounded-xl shadow bg-white px-3 py-2 dark:border-gray-700 dark:bg-gray-800 col-span-full"
+        class="flex items-center justify-between rounded-xl shadow bg-white px-3 py-2 dark:border-gray-700 dark:bg-gray-800 md:col-span-1"
       >
         <div class="flex items-center gap-3">
           <span

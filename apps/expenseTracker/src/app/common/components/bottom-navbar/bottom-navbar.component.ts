@@ -14,14 +14,30 @@ export class BottomNavbarComponent {
   translate = inject(TranslateService);
   menu = signal([
     {
-      name: this.translate.instant('sidebar_item_dashboard_label'),
+      id: 1,
       icon: icons.LayoutDashboard,
       link: ['/' + AppNavigation.dashboard, AppNavigation.home],
     },
     {
-      name: this.translate.instant('sidebar_item_expenses_label'),
+      id: 2,
+      icon: icons.ChartColumnIncreasing,
+    },
+    {
+      id: 3,
+      icon: icons.Plus,
+      link: [
+        '/' + AppNavigation.dashboard,
+        AppNavigation.expenses,
+        AppNavigation.add,
+      ],
+    },
+    {
+      id: 4,
       icon: icons.CreditCard,
-      link: ['/' + AppNavigation.dashboard, AppNavigation.expenses],
+    },
+    {
+      id: 5,
+      icon: icons.User,
     },
   ]);
 }

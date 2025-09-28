@@ -1,16 +1,17 @@
 <nav
-  class="fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-gray-800 dark:bg-gray-900/80 md:hidden"
+  class="fixed bottom-0 inset-x-0 z-40 border-t border-gray-200 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-gray-800 dark:bg-gray-900/80"
 >
   <ul class="mx-auto flex max-w-7xl items-center justify-around px-4 py-2">
-    @for (item of menu(); track item.name) {
+    @for (item of menu(); track item.id) {
     <li>
       <a
         [routerLink]="item.link"
-        [routerLinkActive]="['text-blue-600', 'dark:text-blue-400']"
-        class="flex flex-col items-center gap-1 px-3 py-1.5 text-sm text-gray-700 hover:text-blue-600 dark:text-gray-300"
+        [routerLinkActive]="[item.id !== 3 ? 'text-blue-600' : 'text-gray-700']"
+        class="flex flex-col items-center gap-1 p-2 rounded-full text-sm hover:bg-blue-300 hover:text-white dark:text-gray-300"
+        [class.bg-blue-600]="item.id === 3"
+        [class.text-white]="item.id === 3"
       >
         <i-lucide [img]="item.icon" class="size-5" />
-        <span class="text-[11px]">{{ item.name }}</span>
       </a>
     </li>
     }

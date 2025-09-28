@@ -1,141 +1,154 @@
-<section class="max-w-md mx-auto p-4 pb-24">
-  <h1 class="text-center text-lg font-semibold mb-4">Add Expense</h1>
+<h1 class="text-center text-lg font-semibold mb-4">Add Expense</h1>
 
-  <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
-    <div class="space-y-2">
-      <label for="categoryInput" class="text-sm font-medium">Categories</label>
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="grid lg:grid-cols-2 gap-4"
+>
+  <!-- Category -->
+  <div class="lg:col-span-2">
+    <label for="categoryInput" class="text-sm font-medium inline-block pb-2">
+      Categories
+    </label>
 
-      <div class="relative">
-        <select
-          type="select"
-          readonly
-          [value]="form.value.category ?? ''"
-          (change)="onQuickCategorySelect($event.target)"
-          placeholder="Select category"
-          id="categoryInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 appearance-none placeholder:text-gray-500"
-        >
-          @for (category of categories(); track category.key) {
-          <option value="{{ category.key }}">{{ category.label }}</option>
-          }
-        </select>
+    <div class="relative">
+      <select
+        type="select"
+        readonly
+        [value]="form.value.category ?? ''"
+        (change)="onQuickCategorySelect($event.target)"
+        placeholder="Select category"
+        id="categoryInput"
+        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 appearance-none placeholder:text-gray-500"
+      >
+        @for (category of categories(); track category.key) {
+        <option value="{{ category.key }}">{{ category.label }}</option>
+        }
+      </select>
 
-        <i-lucide
-          [img]="chevronDown"
-          class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
-        />
-      </div>
-    </div>
-
-    <div class="space-y-2">
-      <label for="amountInput" class="text-sm font-medium">Amount</label>
-
-      <input
-        type="number"
-        formControlName="amount"
-        placeholder="500"
-        step="0.01"
-        min="0.01"
-        id="amountInput"
-        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
+      <i-lucide
+        [img]="chevronDown"
+        class="absolute end-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
       />
     </div>
+  </div>
 
-    <div class="space-y-2">
-      <label for="dateInput" class="text-sm font-medium">Date</label>
+  <!-- Amount -->
+  <div class="">
+    <label for="amountInput" class="text-sm font-medium inline-block pb-2"
+      >Amount</label
+    >
 
-      <div class="relative">
-        <input
-          type="date"
-          formControlName="date"
-          id="dateInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
-        />
+    <input
+      type="number"
+      formControlName="amount"
+      placeholder="500"
+      step="0.01"
+      min="0.01"
+      id="amountInput"
+      class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
+    />
+  </div>
 
+  <!-- Date -->
+  <div class="">
+    <label for="dateInput" class="text-sm font-medium inline-block pb-2">
+      Date
+    </label>
+
+    <div class="relative">
+      <input
+        type="date"
+        formControlName="date"
+        id="dateInput"
+        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-start text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
+      />
+
+      <i-lucide
+        [img]="calendarIcon"
+        class="absolute end-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
+      />
+    </div>
+  </div>
+
+  <!-- Receipt -->
+  <div class="lg:col-span-2">
+    <label for="receiptInput" class="text-sm font-medium inline-block pb-2">
+      Attach Receipt
+    </label>
+
+    <div class="relative">
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        id="receiptInput"
+        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm file:hidden dark:border-gray-700 dark:bg-gray-800 cursor-pointer placeholder:text-gray-500"
+      />
+
+      <label for="receiptInput" class="cursor-pointer">
         <i-lucide
-          [img]="calendarIcon"
-          class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
+          [img]="imageIcon"
+          class="absolute end-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
         />
-      </div>
-    </div>
-
-    <div class="space-y-2">
-      <label for="receiptInput" class="text-sm font-medium">
-        Attach Receipt
       </label>
-
-      <div class="relative">
-        <input
-          type="file"
-          (change)="onFileSelected($event)"
-          id="receiptInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm file:hidden dark:border-gray-700 dark:bg-gray-800 cursor-pointer placeholder:text-gray-500"
-        />
-
-        <label for="receiptInput" class="cursor-pointer">
-          <i-lucide
-            [img]="imageIcon"
-            class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
-          />
-        </label>
-      </div>
     </div>
+  </div>
 
-    <div class="space-y-2">
-      <h2 class="text-base font-semibold mb-4">Categories</h2>
+  <!-- Categories Icon List -->
+  <div class="lg:col-span-2">
+    <h2 class="text-base font-semibold mb-4">Categories</h2>
 
-      <div class="grid grid-cols-4 gap-4">
-        @for (category of categories(); track category.key) {
-        <button
-          type="button"
-          (click)="onQuickCategorySelect($event.target)"
-          class="flex flex-col items-center gap-2"
-        >
-          <span
-            class="grid place-items-center rounded-full size-12"
-            [class]="
-              !category.isSelected
-                ? (category.key | categoryStyle)
-                : 'bg-blue-600 text-white'
-            "
-          >
-            <i-lucide [img]="category.key | categoryIcon" class="size-5" />
-          </span>
-
-          <span
-            class="text-2xs font-semibold"
-            [class]="!category.isSelected ? 'text-gray-700' : 'text-blue-700'"
-          >
-            {{ category.label }}
-          </span>
-        </button>
-        }
-
-        <button
-          type="button"
-          (click)="onAddCategory()"
-          class="flex flex-col items-center gap-2"
-        >
-          <span
-            class="grid place-items-center rounded-full size-12 border border-blue-700 dark:border-gray-700 dark:bg-gray-800 text-blue-700"
-          >
-            <i-lucide [img]="plusIcon" class="size-5" />
-          </span>
-
-          <span class="text-2xs text-gray-700 font-semibold">
-            Add Category
-          </span>
-        </button>
-      </div>
-    </div>
-
-    <div>
+    <div class="grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-8">
+      @for (category of categories(); track category.key) {
       <button
-        type="submit"
-        class="mx-auto block w-full max-w-md rounded-md bg-blue-600 px-4 py-3 text-white disabled:opacity-50"
+        type="button"
+        (click)="onQuickCategorySelect($event.target)"
+        class="flex flex-col items-center gap-2"
       >
-        Save
+        <span
+          class="grid place-items-center rounded-full size-12"
+          [class]="
+            !category.isSelected
+              ? (category.key | categoryStyle)
+              : 'bg-blue-600 text-white'
+          "
+        >
+          <i-lucide [img]="category.key | categoryIcon" class="size-5" />
+        </span>
+
+        <span
+          class="text-2xs font-semibold"
+          [class]="!category.isSelected ? 'text-gray-700' : 'text-blue-700'"
+        >
+          {{ category.label }}
+        </span>
+      </button>
+      }
+
+      <button
+        type="button"
+        (click)="onAddCategory()"
+        class="flex flex-col items-center gap-2"
+      >
+        <span
+          class="grid place-items-center rounded-full size-12 border border-blue-700 dark:border-gray-700 dark:bg-gray-800 text-blue-700"
+        >
+          <i-lucide [img]="plusIcon" class="size-5" />
+        </span>
+
+        <span class="text-2xs text-gray-700 font-semibold"> Add Category </span>
       </button>
     </div>
-  </form>
-</section>
+  </div>
+
+  <!-- Submit button -->
+  <div class="lg:col-span-2 lg:mt-6 mt-4">
+    <button
+      type="submit"
+      [disabled]="isSubmitDisabled()"
+      class="mx-auto block w-full max-w-md rounded-md bg-blue-600 px-4 py-3 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      Save
+    </button>
+  </div>
+</form>
