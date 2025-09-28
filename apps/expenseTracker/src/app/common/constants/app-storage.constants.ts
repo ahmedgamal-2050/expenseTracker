@@ -3,4 +3,5 @@ export const AppStorage = {
   token: 'token',
   user: 'user',
   theme: 'theme',
+  expenses: 'expenses',
 };

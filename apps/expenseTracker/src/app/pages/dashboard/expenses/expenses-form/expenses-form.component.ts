@@ -10,10 +10,20 @@ import {
 import { Router } from '@angular/router';
 import { LucideAngularModule, icons } from 'lucide-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { AppNavigation } from '../../../../common/constants/app-navigation.constants';
+import { AppStorage } from '../../../../common/constants/app-storage.constants';
+import { CategoryStylePipe } from '../../../../common/pipes/category-style/category-style.pipe';
+import { CategoryIconPipe } from '../../../../common/pipes/category-icon/category-icon.pipe';
 
 @Component({
   selector: 'app-expenses-form',
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    LucideAngularModule,
+    CategoryStylePipe,
+    CategoryIconPipe,
+  ],
   templateUrl: './expenses-form.component.html',
   styleUrl: './expenses-form.component.scss',
 })
@@ -30,35 +40,30 @@ export class ExpensesFormComponent {
     {
       key: 'groceries',
       label: 'Groceries',
-      icon: icons.ShoppingCart,
       isSelected: false,
     },
     {
       key: 'entertainment',
       label: 'Entertainment',
-      icon: icons.Trash2,
       isSelected: false,
     },
-    { key: 'gas', label: 'Gas', icon: icons.Fuel, isSelected: false },
+    { key: 'gas', label: 'Gas', isSelected: false },
     {
       key: 'shopping',
       label: 'Shopping',
-      icon: icons.ShoppingBag,
       isSelected: false,
     },
     {
       key: 'newspaper',
       label: 'News Paper',
-      icon: icons.Newspaper,
       isSelected: false,
     },
     {
       key: 'transport',
       label: 'Transport',
-      icon: icons.Car,
       isSelected: false,
     },
-    { key: 'rent', label: 'Rent', icon: icons.Building, isSelected: false },
+    { key: 'rent', label: 'Rent', isSelected: false },
   ]);
   plusIcon = icons.Plus;
 
@@ -97,11 +102,18 @@ export class ExpensesFormComponent {
   }
 
   submit() {
+    console.log('🚀 ~ ExpensesFormComponent ~ submit ~ this.form:', this.form);
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
+
+    const expenses = JSON.parse(
+      localStorage.getItem(AppStorage.expenses) ?? '[]'
+    );
+    expenses.push(this.form.value);
+    localStorage.setItem(AppStorage.expenses, JSON.stringify(expenses));
     // Simulate save, then navigate back to expenses list
-    this.router.navigate(['../../expenses']);
+    this.router.navigate(['/' + AppNavigation.dashboard, AppNavigation.home]);
   }
 }

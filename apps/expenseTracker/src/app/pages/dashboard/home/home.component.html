@@ -1,1 +1,86 @@
-<p>home works!</p>
+<section class="max-w-md mx-auto pt-4 pb-24">
+  <!-- Header card -->
+  <div class="relative rounded-2xl bg-blue-600 p-4 text-white shadow-lg">
+    <div class="flex items-start justify-between">
+      <div>
+        <p class="text-sm opacity-90">Good Morning</p>
+        <p class="text-base font-semibold">{{ user().name }}</p>
+      </div>
+      <button
+        type="button"
+        class="inline-flex items-center gap-1 rounded-md bg-white text-gray-900 px-2 py-1 text-xs"
+      >
+        {{ month() }}
+        <i-lucide [img]="caretDown" class="size-4" />
+      </button>
+    </div>
+
+    <div class="rounded-xl bg-marine-blue-500 p-4 relative top-10">
+      <div class="flex items-center justify-between">
+        <span class="text-sm opacity-90">Total Balance</span>
+        <i-lucide [img]="menuIcon" class="size-5" />
+      </div>
+
+      <p class="mt-1 text-3xl font-bold">
+        $ {{ totalBalance() | number : '1.0-0' }}
+      </p>
+
+      <div class="mt-3 grid grid-cols-2 gap-4 text-sm">
+        <div class="flex items-center gap-2">
+          <i-lucide [img]="incomeIcon" class="size-5" />
+          <div>
+            <p class="opacity-90">Income</p>
+            <p class="font-semibold">
+              $ {{ totalIncome() | number : '1.0-0' }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 justify-end">
+          <i-lucide [img]="expenseIcon" class="size-5" />
+          <div class="text-end">
+            <p class="opacity-90">Expenses</p>
+            <p class="font-semibold">
+              $ {{ totalExpenses() | number : '1.0-0' }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent expenses -->
+  <div class="mt-12 px-6">
+    <div class="mb-2 flex items-center justify-between">
+      <h2 class="text-base font-semibold">Recent Expenses</h2>
+      <button class="text-xs text-blue-600">see all</button>
+    </div>
+
+    <ul class="grid grid-cols-[repeat(auto-fill,minmax(24rem,1fr))] gap-3">
+      @for (item of recent(); track $index) {
+      <li
+        class="flex items-center justify-between rounded-xl shadow bg-white px-3 py-2 dark:border-gray-700 dark:bg-gray-800 col-span-full"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="grid size-10 place-items-center rounded-full"
+            [class]="item.category | categoryStyle"
+          >
+            <i-lucide [img]="item.category | categoryIcon" class="size-5" />
+          </span>
+
+          <div>
+            <p class="text-sm font-semibold">{{ item.category }}</p>
+            <p class="text-xs opacity-70">Manually</p>
+          </div>
+        </div>
+
+        <div class="text-end">
+          <p class="text-sm font-semibold">- $ {{ item.amount }}</p>
+          <p class="text-xs opacity-70">Today 12:00 PM</p>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

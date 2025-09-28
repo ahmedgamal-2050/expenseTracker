@@ -7,6 +7,8 @@
   --breakpoint-xs: 30rem;
 
   --text-2xs: 0.625rem;
+
+  --color-marine-blue-500: #466df0;
 }
 
 @layer base {
@@ -16,5 +18,9 @@
 
   input {
     @apply appearance-none rounded-lg w-full;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }

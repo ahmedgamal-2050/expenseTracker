@@ -13,7 +13,7 @@
           (change)="onQuickCategorySelect($event.target)"
           placeholder="Select category"
           id="categoryInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 pe-9 text-sm dark:border-gray-700 dark:bg-gray-800"
+          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 appearance-none placeholder:text-gray-500"
         >
           @for (category of categories(); track category.key) {
           <option value="{{ category.key }}">{{ category.label }}</option>
@@ -33,10 +33,11 @@
       <input
         type="number"
         formControlName="amount"
-        placeholder="$50,000"
+        placeholder="500"
         step="0.01"
+        min="0.01"
         id="amountInput"
-        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800"
+        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
       />
     </div>
 
@@ -48,7 +49,7 @@
           type="date"
           formControlName="date"
           id="dateInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 pe-9 text-sm dark:border-gray-700 dark:bg-gray-800"
+          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
         />
 
         <i-lucide
@@ -68,13 +69,15 @@
           type="file"
           (change)="onFileSelected($event)"
           id="receiptInput"
-          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 pe-9 text-sm file:hidden dark:border-gray-700 dark:bg-gray-800"
+          class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm file:hidden dark:border-gray-700 dark:bg-gray-800 cursor-pointer placeholder:text-gray-500"
         />
 
-        <i-lucide
-          [img]="imageIcon"
-          class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
-        />
+        <label for="receiptInput" class="cursor-pointer">
+          <i-lucide
+            [img]="imageIcon"
+            class="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
+          />
+        </label>
       </div>
     </div>
 
@@ -89,26 +92,24 @@
           class="flex flex-col items-center gap-2"
         >
           <span
-            class="grid place-items-center rounded-full size-12 border border-gray-200 dark:border-gray-700 dark:bg-gray-800"
-            [class.bg-blue-600]="category.isSelected"
-            [class.text-white]="category.isSelected"
-            [class.bg-blue-100]="!category.isSelected"
-            [class.text-blue-700]="!category.isSelected"
+            class="grid place-items-center rounded-full size-12"
+            [class]="
+              !category.isSelected
+                ? (category.key | categoryStyle)
+                : 'bg-blue-600 text-white'
+            "
           >
-            <i-lucide [img]="category.icon" class="size-5" />
+            <i-lucide [img]="category.key | categoryIcon" class="size-5" />
           </span>
 
           <span
             class="text-2xs font-semibold"
-            [class.text-gray-700]="!category.isSelected"
-            [class.text-blue-700]="category.isSelected"
+            [class]="!category.isSelected ? 'text-gray-700' : 'text-blue-700'"
           >
             {{ category.label }}
           </span>
         </button>
         }
-
-        <!-- { key: 'add', label: 'Add Category', icon: icons.Plus, isSelected: false }, -->
 
         <button
           type="button"
