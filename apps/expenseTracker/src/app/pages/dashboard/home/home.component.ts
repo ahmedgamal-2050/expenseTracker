@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   cartIcon = icons.ShoppingCart;
   musicIcon = icons.Music2;
   carIcon = icons.Car;
+  reloadIcon = icons.RotateCcw;
 
   filterOpen = signal<boolean>(false);
   periodOptions = [
@@ -143,9 +144,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getExpenses() {
+  getExpenses(page = 1) {
     this.expensesService
-      .getExpenses()
+      .getExpenses(1, this.meta().limit * page)
       .subscribe((response: ApiArrayResponse<Expense>) => {
         const { data, meta } = response;
         this.expenses.set(data);

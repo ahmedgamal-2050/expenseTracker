@@ -1,11 +1,11 @@
 <app-top-navbar />
 
-<div class="flex gap-4 w-full h-screen">
+<div class="flex gap-4 w-full bg-gray-50 min-h-screen">
   <div class="hidden lg:block">
     <app-sidebar [sidebarMenu]="dashboardMenu()" />
   </div>
 
-  <main class="w-full lg:w-[calc(100%-12rem)] lg:ms-auto bg-gray-50">
+  <main class="w-full lg:w-[calc(100%-12rem)] lg:ms-auto pt-[3.5rem]">
     <div class="mx-auto max-w-8xl px-4 pt-4 lg:pt-6 pb-24">
       <router-outlet />
     </div>
