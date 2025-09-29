@@ -8,12 +8,13 @@ describe('SidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarComponent]
-    })
-    .compileComponents();
+      imports: [SidebarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('sidebarMenu', []);
     fixture.detectChanges();
   });
 

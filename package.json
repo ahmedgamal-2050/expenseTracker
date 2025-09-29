@@ -4,7 +4,12 @@
   "license": "MIT",
   "scripts": {
     "start": "npx nx run expenseTracker:serve:development --port 4000 -o",
-    "json-server": "json-server --watch db.json --port 4300"
+    "json-server": "json-server --watch db.json --port 4300",
+    "test": "npx nx test expenseTracker",
+    "test:watch": "npx nx test expenseTracker --watch",
+    "test:coverage": "npx nx test expenseTracker --coverage",
+    "test:all": "npx nx run-many -t=test --all",
+    "test:affected": "npx nx affected -t=test"
   },
   "private": true,
   "dependencies": {

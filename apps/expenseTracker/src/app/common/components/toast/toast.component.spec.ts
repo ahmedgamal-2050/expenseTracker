@@ -8,12 +8,12 @@ describe('ToastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToastComponent]
-    })
-    .compileComponents();
+      imports: [ToastComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('toast', { type: 'success', message: 'Hi' });
     fixture.detectChanges();
   });
 
