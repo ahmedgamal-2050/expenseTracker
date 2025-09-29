@@ -17,5 +17,15 @@
   "expenses_form_screen_date_label": "Date",
   "expenses_form_screen_attach_receipt_label": "Attach Receipt",
   "expenses_form_screen_add_category_label": "Add Category",
-  "expenses_form_screen_save_label": "Save"
+  "expenses_form_screen_save_label": "Save",
+  "top_navbar_logout_label": "Logout",
+  "top_navbar_menu_label": "Menu",
+  "top_navbar_ar_label": "AR",
+  "top_navbar_en_label": "EN",
+  "top_navbar_dark_label": "Dark",
+  "top_navbar_light_label": "Light",
+  "login_screen_login_label": "Login",
+  "login_screen_email_label": "Email",
+  "login_screen_email_placeholder": "Enter your email",
+  "login_screen_password_label": "Password"
 }

@@ -10,10 +10,11 @@ import { LoginResponse } from './login.model';
 import { AppStorage } from '../../../common/constants/app-storage.constants';
 import { AppNavigation } from '../../../common/constants/app-navigation.constants';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

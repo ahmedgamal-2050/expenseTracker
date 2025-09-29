@@ -3,12 +3,14 @@
     Expense Tracker Logo
   </h1>
 
-  <h5 class="text-center text-gray-900 text-xl font-bold mb-6">Login</h5>
+  <h5 class="text-center text-gray-900 text-xl font-bold mb-6">
+    {{ 'login_screen_login_label' | translate }}
+  </h5>
 
   <form [formGroup]="loginForm()" (ngSubmit)="onSubmit()">
     <div class="mb-4">
       <label for="email" class="block text-gray-900 text-sm font-semibold mb-1">
-        Email
+        {{ 'login_screen_email_label' | translate }}
       </label>
 
       <input
@@ -16,7 +18,7 @@
         id="email"
         autocomplete="email"
         class="p-3 text-gray-700 bg-gray-50 placeholder:text-gray-300 focus:outline-none focus:shadow-outline"
-        placeholder="Enter your email"
+        placeholder="{{ 'login_screen_email_placeholder' | translate }}"
         formControlName="email"
       />
     </div>
@@ -26,7 +28,7 @@
         for="password"
         class="block text-gray-900 text-sm font-semibold mb-1"
       >
-        Password
+        {{ 'login_screen_password_label' | translate }}
       </label>
 
       <input
@@ -43,7 +45,7 @@
       type="submit"
       class="mt-4 bg-blue-600 hover:bg-blue-800 text-white font-normal py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline w-full"
     >
-      Login
+      {{ 'login_screen_login_label' | translate }}
     </button>
   </form>
 </section>

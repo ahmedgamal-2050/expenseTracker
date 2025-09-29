@@ -17,5 +17,15 @@
   "expenses_form_screen_date_label": "التاريخ",
   "expenses_form_screen_attach_receipt_label": "إرفاق الإيصال",
   "expenses_form_screen_add_category_label": "إضافة الصنف",
-  "expenses_form_screen_save_label": "حفظ"
+  "expenses_form_screen_save_label": "حفظ",
+  "top_navbar_logout_label": "تسجيل الخروج",
+  "top_navbar_menu_label": "القائمة",
+  "top_navbar_ar_label": "العربية",
+  "top_navbar_en_label": "الانجليزية",
+  "top_navbar_dark_label": "داكن",
+  "top_navbar_light_label": "فاتح",
+  "login_screen_login_label": "تسجيل الدخول",
+  "login_screen_email_label": "البريد الإلكتروني",
+  "login_screen_email_placeholder": "أدخل البريد الإلكتروني",
+  "login_screen_password_label": "كلمة المرور"
 }

@@ -1,16 +1,15 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AppStorage } from '../../constants/app-storage.constants';
 import { AppNavigation } from '../../constants/app-navigation.constants';
 import { icons, LucideAngularModule } from 'lucide-angular';
-import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-top-navbar',
-  imports: [CommonModule, LucideAngularModule],
+  imports: [LucideAngularModule, TranslatePipe],
   templateUrl: './top-navbar.component.html',
   styleUrl: './top-navbar.component.scss',
 })
