@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@theme {
+  --font-inter: 'Inter', sans-serif;
+  --font-beiruti: 'Beiruti', sans-serif;
+
+  --breakpoint-xs: 30rem;
+
+  --text-2xs: 0.625rem;
+
+  --color-marine-blue-400: #5e84f7;
+  --color-marine-blue-500: #466df0;
+}
+
+@layer base {
+  dir:ltr * {
+    @apply font-inter;
+  }
+
+  dir:rtl * {
+    @apply font-beiruti;
+  }
+
+  input {
+    @apply appearance-none rounded-lg w-full outline-none;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}

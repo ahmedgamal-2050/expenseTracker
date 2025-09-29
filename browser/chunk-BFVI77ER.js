@@ -1,0 +1,1 @@
+import{Fa as s,db as t,eb as p,sb as o}from"./chunk-YIYEQTYG.js";var a=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=s({type:n,selectors:[["app-expenses"]],decls:2,vars:0,template:function(e,i){e&1&&(t(0,"p"),o(1,"expenses works!"),p())},encapsulation:2})};export{a as ExpensesComponent};
