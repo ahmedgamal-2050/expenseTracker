@@ -87,20 +87,20 @@ export class HomeComponent implements OnInit {
         return { start, end };
       }
       case 'this_quarter': {
-        const q = Math.floor(month / 3);
-        const start = new Date(year, q * 3, 1);
-        const end = new Date(year, q * 3 + 3, 0, 23, 59, 59, 999);
+        const quarter = Math.floor(month / 3);
+        const start = new Date(year, quarter * 3, 1);
+        const end = new Date(year, quarter * 3 + 3, 0, 23, 59, 59, 999);
         return { start, end };
       }
       case 'last_quarter': {
-        let q = Math.floor(month / 3) - 1;
-        let y = year;
-        if (q < 0) {
-          q = 3;
-          y = year - 1;
+        let quarter = Math.floor(month / 3) - 1;
+        let lastYear = year;
+        if (quarter < 0) {
+          quarter = 3;
+          lastYear = year - 1;
         }
-        const start = new Date(y, q * 3, 1);
-        const end = new Date(y, q * 3 + 3, 0, 23, 59, 59, 999);
+        const start = new Date(lastYear, quarter * 3, 1);
+        const end = new Date(lastYear, quarter * 3 + 3, 0, 23, 59, 59, 999);
         return { start, end };
       }
       case 'this_year':
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
     const { start, end } = this.getPeriodRange(this.selectedPeriod());
     this.filteredExpenses.set(
       this.expenses().filter((expense) => {
-        if (!expense?.date) return false;
+        if (!expense.date) return false;
         const todayDate = new Date(expense.date);
         return todayDate >= start && todayDate <= end;
       })

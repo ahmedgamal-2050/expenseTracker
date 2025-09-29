@@ -13,4 +13,12 @@ describe('CurrencyConversionPipe', () => {
     );
     expect(pipe).toBeTruthy();
   });
+
+  it('should convert values using currency service', () => {
+    const pipe = TestBed.runInInjectionContext(
+      () => new CurrencyConversionPipe()
+    );
+    const result = pipe.transform(100, 2);
+    expect(result).toBe('200.00');
+  });
 });

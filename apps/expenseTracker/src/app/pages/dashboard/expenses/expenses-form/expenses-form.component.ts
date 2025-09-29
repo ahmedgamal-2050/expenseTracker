@@ -55,7 +55,6 @@ export class ExpensesFormComponent implements OnInit {
     receipt: new FormControl<File | null>(null),
   });
 
-  isSubmitDisabled = computed(() => this.form.invalid);
   toast = signal<{ type: 'success' | 'error'; message: string }>({
     type: 'success',
     message: '',
@@ -118,6 +117,11 @@ export class ExpensesFormComponent implements OnInit {
       });
       return;
     }
+
+    this.addExpenses();
+  }
+
+  addExpenses() {
     this.expensesService.addExpenses(this.form.value).subscribe(() => {
       const expenses = JSON.parse(
         localStorage.getItem(AppStorage.expenses) ?? '[]'
