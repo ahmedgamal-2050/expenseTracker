@@ -52,6 +52,11 @@
       id="amountInput"
       class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
     />
+    @if (form.get('amount')?.touched && form.get('amount')?.invalid) {
+    <p class="mt-1 text-xs text-red-600">
+      Amount is required and must be greater than 0.
+    </p>
+    }
   </div>
 
   <!-- Date -->
@@ -69,6 +74,9 @@
         (click)="openDatePicker(dateInput)"
         class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-start text-sm cursor-pointer dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
       />
+      @if (form.get('date')?.touched && form.get('date')?.invalid) {
+      <p class="mt-1 text-xs text-red-600">Date is required.</p>
+      }
 
       <label
         for="dateInput"
@@ -169,3 +177,5 @@
     </button>
   </div>
 </form>
+
+<app-toast [toast]="toast()" />

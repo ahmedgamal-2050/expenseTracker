@@ -10,19 +10,25 @@ import { LoginResponse } from './login.model';
 import { AppStorage } from '../../../common/constants/app-storage.constants';
 import { AppNavigation } from '../../../common/constants/app-navigation.constants';
 import { Router } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ToastComponent } from '../../../common/components/toast/toast.component';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, ToastComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private translate = inject(TranslateService);
 
   isLoading = signal(false);
+  toast = signal<{ type: 'success' | 'error'; message: string }>({
+    type: 'success',
+    message: '',
+  });
 
   loginForm = signal<FormGroup>(
     new FormGroup({
@@ -34,6 +40,12 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm().invalid) {
       this.loginForm().markAllAsTouched();
+      this.toast.set({
+        type: 'error',
+        message: this.translate.instant(
+          'login_screen_please_fix_highlighted_fields'
+        ),
+      });
       return;
     }
 
@@ -48,6 +60,10 @@ export class LoginComponent {
       },
       error: () => {
         this.isLoading.set(false);
+        this.toast.set({
+          type: 'error',
+          message: this.translate.instant('login_screen_login_failed'),
+        });
       },
     });
   }
@@ -57,5 +73,9 @@ export class LoginComponent {
     localStorage.setItem(AppStorage.user, JSON.stringify(res.user));
     this.router.navigate([AppNavigation.dashboard, AppNavigation.home]);
     this.isLoading.set(false);
+    this.toast.set({
+      type: 'success',
+      message: this.translate.instant('login_screen_welcome_back'),
+    });
   }
 }

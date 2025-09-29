@@ -9,13 +9,14 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LucideAngularModule, icons } from 'lucide-angular';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AppNavigation } from '../../../../common/constants/app-navigation.constants';
 import { AppStorage } from '../../../../common/constants/app-storage.constants';
 import { CategoryOptionPipe } from '../../../../common/pipes/category-option/category-option.pipe';
 import { CategoryService } from '../../../../common/services/category/category.service';
 import { Category } from '../expenses.model';
 import { ExpensesService } from '../../../../common/services/expenses/expenses.service';
+import { ToastComponent } from '../../../../common/components/toast/toast.component';
 
 @Component({
   selector: 'app-expenses-form',
@@ -25,6 +26,7 @@ import { ExpensesService } from '../../../../common/services/expenses/expenses.s
     LucideAngularModule,
     CategoryOptionPipe,
     TranslatePipe,
+    ToastComponent,
   ],
   templateUrl: './expenses-form.component.html',
   styleUrl: './expenses-form.component.scss',
@@ -34,6 +36,7 @@ export class ExpensesFormComponent implements OnInit {
   private router = inject(Router);
   private categoryService = inject(CategoryService);
   private expensesService = inject(ExpensesService);
+  private translate = inject(TranslateService);
 
   calendarIcon = icons.Calendar;
   imageIcon = icons.ImagePlus;
@@ -53,6 +56,10 @@ export class ExpensesFormComponent implements OnInit {
   });
 
   isSubmitDisabled = computed(() => this.form.invalid);
+  toast = signal<{ type: 'success' | 'error'; message: string }>({
+    type: 'success',
+    message: '',
+  });
 
   ngOnInit(): void {
     this.getCategories();
@@ -103,6 +110,12 @@ export class ExpensesFormComponent implements OnInit {
   submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.toast.set({
+        type: 'error',
+        message: this.translate.instant(
+          'expenses_form_screen_please_fix_highlighted_fields'
+        ),
+      });
       return;
     }
     this.expensesService.addExpenses(this.form.value).subscribe(() => {
@@ -113,6 +126,10 @@ export class ExpensesFormComponent implements OnInit {
       localStorage.setItem(AppStorage.expenses, JSON.stringify(expenses));
 
       this.router.navigate(['/' + AppNavigation.dashboard, AppNavigation.home]);
+      this.toast.set({
+        type: 'success',
+        message: 'Expense saved successfully.',
+      });
     });
   }
 }

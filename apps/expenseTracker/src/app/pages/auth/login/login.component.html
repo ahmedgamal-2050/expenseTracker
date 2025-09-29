@@ -17,10 +17,15 @@
         type="email"
         id="email"
         autocomplete="email"
-        class="p-3 text-gray-700 bg-gray-50 placeholder:text-gray-300 focus:outline-none focus:shadow-outline"
+        class="p-3 text-gray-700 bg-gray-50 placeholder:text-gray-300 focus:outline-none focus:shadow-outline border w-full"
         placeholder="{{ 'login_screen_email_placeholder' | translate }}"
         formControlName="email"
       />
+
+      @if (loginForm().get('email')?.touched &&
+      loginForm().get('email')?.invalid) {
+      <p class="mt-1 text-xs text-red-600">Invalid email address.</p>
+      }
     </div>
 
     <div class="mb-4">
@@ -35,10 +40,15 @@
         type="password"
         id="password"
         autocomplete="current-password"
-        class="p-3 text-gray-700 bg-gray-50 placeholder:text-gray-300 focus:outline-none focus:shadow-outline"
+        class="p-3 text-gray-700 bg-gray-50 placeholder:text-gray-300 focus:outline-none focus:shadow-outline border w-full"
         placeholder="**********"
         formControlName="password"
       />
+
+      @if (loginForm().get('password')?.touched &&
+      loginForm().get('password')?.invalid) {
+      <p class="mt-1 text-xs text-red-600">Password is required.</p>
+      }
     </div>
 
     <button
@@ -49,3 +59,5 @@
     </button>
   </form>
 </section>
+
+<app-toast [toast]="toast()" [position]="'top-1 end-1'" />

@@ -27,5 +27,9 @@
   "login_screen_login_label": "تسجيل الدخول",
   "login_screen_email_label": "البريد الإلكتروني",
   "login_screen_email_placeholder": "أدخل البريد الإلكتروني",
-  "login_screen_password_label": "كلمة المرور"
+  "login_screen_password_label": "كلمة المرور",
+  "expenses_form_screen_please_fix_highlighted_fields": "يرجى إصلاح الحقول المصاحبة بالألوان.",
+  "login_screen_please_fix_highlighted_fields": "يرجى إصلاح الحقول المصاحبة بالألوان.",
+  "login_screen_login_failed": "تسجيل الدخول فشل. حاول مرة أخرى.",
+  "login_screen_welcome_back": "مرحبا بعودتك!"
 }
