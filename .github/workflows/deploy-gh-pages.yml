@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (production) with baseHref
+        run: npx nx build expenseTracker --configuration=production --base-href=/expenseTracker/
+
+      - name: Resolve output dir and add SPA 404
+        shell: bash
+        run: |
+          OUT=dist/apps/expenseTracker/browser
+          [[ -d "$OUT" ]] || OUT=dist/apps/expenseTracker
+          cp "$OUT/index.html" "$OUT/404.html"
+          echo "OUT_DIR=$OUT" >> $GITHUB_ENV
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.OUT_DIR }}
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

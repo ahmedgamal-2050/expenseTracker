@@ -11,7 +11,10 @@
     "test:watch": "npx nx test expenseTracker --watch",
     "test:coverage": "npx nx test expenseTracker --coverage",
     "test:all": "npx nx run-many -t=test --all",
-    "test:affected": "npx nx affected -t=test"
+    "test:affected": "npx nx affected -t=test",
+    "build:gh": "npx nx build expenseTracker --configuration=production --base-href=/expenseTracker/",
+    "deploy:gh": "npx ngh --dir=dist/apps/expenseTracker/browser --branch=gh-pages --message=Deploy",
+    "deploy": "npm run build:gh && npm run deploy:gh"
   },
   "private": true,
   "dependencies": {
