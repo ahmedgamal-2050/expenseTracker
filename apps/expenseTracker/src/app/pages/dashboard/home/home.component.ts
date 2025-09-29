@@ -10,6 +10,7 @@ import { DefaultCurrency } from '../../../common/constants/currency-api.constant
 import { CurrencyConversionPipe } from '../../../common/pipes/currency-conversion/currency-conversion.pipe';
 import { ExpensesService } from '../../../common/services/expenses/expenses.service';
 import { ApiArrayResponse, Meta } from '../../../common/models/api-array.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { ApiArrayResponse, Meta } from '../../../common/models/api-array.model';
     CategoryOptionPipe,
     DatePipe,
     CurrencyConversionPipe,
+    TranslatePipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LucideAngularModule, icons } from 'lucide-angular';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AppNavigation } from '../../../../common/constants/app-navigation.constants';
 import { AppStorage } from '../../../../common/constants/app-storage.constants';
 import { CategoryOptionPipe } from '../../../../common/pipes/category-option/category-option.pipe';
@@ -24,6 +24,7 @@ import { ExpensesService } from '../../../../common/services/expenses/expenses.s
     ReactiveFormsModule,
     LucideAngularModule,
     CategoryOptionPipe,
+    TranslatePipe,
   ],
   templateUrl: './expenses-form.component.html',
   styleUrl: './expenses-form.component.scss',
@@ -31,7 +32,6 @@ import { ExpensesService } from '../../../../common/services/expenses/expenses.s
 export class ExpensesFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
-  private translate = inject(TranslateService);
   private categoryService = inject(CategoryService);
   private expensesService = inject(ExpensesService);
 
@@ -86,6 +86,14 @@ export class ExpensesFormComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0] ?? null;
     this.form.patchValue({ receipt: file });
+  }
+
+  openDatePicker(input: HTMLInputElement) {
+    if (typeof input.showPicker === 'function') {
+      input.showPicker();
+    } else {
+      input.focus();
+    }
   }
 
   handleAddCategory() {

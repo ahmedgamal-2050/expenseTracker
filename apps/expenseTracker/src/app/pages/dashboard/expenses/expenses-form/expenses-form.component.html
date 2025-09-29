@@ -1,4 +1,6 @@
-<h1 class="text-center text-lg font-semibold mb-4">Add Expense</h1>
+<h1 class="text-center text-lg font-semibold mb-4">
+  {{ 'expenses_form_screen_add_expense_title' | translate }}
+</h1>
 
 <form
   [formGroup]="form"
@@ -8,7 +10,7 @@
   <!-- Category -->
   <div class="lg:col-span-2">
     <label for="categoryInput" class="text-sm font-medium inline-block pb-2">
-      Categories
+      {{ 'expenses_form_screen_categories_label' | translate }}
     </label>
 
     <div class="relative">
@@ -20,7 +22,9 @@
         id="categoryInput"
         class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-800 appearance-none placeholder:text-gray-500"
       >
-        <option value="''">Select category</option>
+        <option value="''">
+          {{ 'expenses_form_screen_select_category_label' | translate }}
+        </option>
         @for (category of categories(); track category.key) {
         <option [value]="category.key">{{ category.label }}</option>
         }
@@ -36,7 +40,7 @@
   <!-- Amount -->
   <div class="">
     <label for="amountInput" class="text-sm font-medium inline-block pb-2">
-      Amount (USD)
+      {{ 'expenses_form_screen_amount_label' | translate }}
     </label>
 
     <input
@@ -53,28 +57,35 @@
   <!-- Date -->
   <div class="">
     <label for="dateInput" class="text-sm font-medium inline-block pb-2">
-      Date
+      {{ 'expenses_form_screen_date_label' | translate }}
     </label>
 
     <div class="relative">
       <input
+        #dateInput
         type="date"
         formControlName="date"
         id="dateInput"
-        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-start text-sm dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
+        (click)="openDatePicker(dateInput)"
+        class="w-full rounded-md border border-gray-200 bg-gray-100 px-3 py-2 text-start text-sm cursor-pointer dark:border-gray-700 dark:bg-gray-800 placeholder:text-gray-500"
       />
 
-      <i-lucide
-        [img]="calendarIcon"
-        class="absolute end-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
-      />
+      <label
+        for="dateInput"
+        class="absolute end-3 top-1/2 -translate-y-1/2 cursor-pointer"
+      >
+        <i-lucide
+          [img]="calendarIcon"
+          class="absolute end-3/4 top-1/2 -translate-y-1/2 size-4 text-gray-500"
+        />
+      </label>
     </div>
   </div>
 
   <!-- Receipt -->
   <div class="lg:col-span-2">
     <label for="receiptInput" class="text-sm font-medium inline-block pb-2">
-      Attach Receipt
+      {{ 'expenses_form_screen_attach_receipt_label' | translate }}
     </label>
 
     <div class="relative">
@@ -96,7 +107,9 @@
 
   <!-- Categories Icon List -->
   <div class="lg:col-span-2">
-    <h2 class="text-base font-semibold mb-4">Categories</h2>
+    <h2 class="text-base font-semibold mb-4">
+      {{ 'expenses_form_screen_categories_label' | translate }}
+    </h2>
 
     <div class="grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-8">
       @for (category of categories(); track category.key) {
@@ -139,7 +152,9 @@
           <i-lucide [img]="plusIcon" class="size-5" />
         </span>
 
-        <span class="text-2xs text-gray-700 font-semibold"> Add Category </span>
+        <span class="text-2xs text-gray-700 font-semibold">
+          {{ 'expenses_form_screen_add_category_label' | translate }}
+        </span>
       </button>
     </div>
   </div>
@@ -150,7 +165,7 @@
       type="submit"
       class="mx-auto block w-full max-w-md rounded-md bg-blue-600 px-4 py-3 text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      Save
+      {{ 'expenses_form_screen_save_label' | translate }}
     </button>
   </div>
 </form>

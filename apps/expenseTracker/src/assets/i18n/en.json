@@ -1,5 +1,21 @@
 {
   "title": "Expense Tracker",
   "sidebar_item_dashboard_label": "Dashboard",
-  "sidebar_item_expenses_label": "Expenses"
+  "sidebar_item_expenses_label": "Expenses",
+  "dashboard_home_screen_good_morning_label": "Good Morning",
+  "dashboard_home_screen_total_balance_label": "Total Balance",
+  "dashboard_home_screen_income_label": "Income",
+  "dashboard_home_screen_expenses_label": "Expenses",
+  "dashboard_home_screen_recent_expenses_label": "Recent Expenses",
+  "dashboard_home_screen_see_all_label": "See All",
+  "dashboard_home_screen_manually_label": "Manually",
+  "dashboard_home_screen_this_month_label": "This Month",
+  "expenses_form_screen_add_expense_title": "Add Expense",
+  "expenses_form_screen_categories_label": "Categories",
+  "expenses_form_screen_select_category_label": "Select Category",
+  "expenses_form_screen_amount_label": "Amount",
+  "expenses_form_screen_date_label": "Date",
+  "expenses_form_screen_attach_receipt_label": "Attach Receipt",
+  "expenses_form_screen_add_category_label": "Add Category",
+  "expenses_form_screen_save_label": "Save"
 }

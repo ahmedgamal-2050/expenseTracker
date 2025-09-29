@@ -1,5 +1,21 @@
 {
   "title": "متتبع النفقات",
   "sidebar_item_dashboard_label": "لوحة التحكم",
-  "sidebar_item_expenses_label": "النفقات"
+  "sidebar_item_expenses_label": "النفقات",
+  "dashboard_home_screen_good_morning_label": "صباح الخير",
+  "dashboard_home_screen_total_balance_label": "المبلغ الكلي",
+  "dashboard_home_screen_income_label": "الدخل",
+  "dashboard_home_screen_expenses_label": "النفقات",
+  "dashboard_home_screen_recent_expenses_label": "النفقات الأخيرة",
+  "dashboard_home_screen_see_all_label": "عرض الكل",
+  "dashboard_home_screen_manually_label": "يدوي",
+  "dashboard_home_screen_this_month_label": "هذا الشهر",
+  "expenses_form_screen_add_expense_title": "إضافة النفقة",
+  "expenses_form_screen_categories_label": "الأصناف",
+  "expenses_form_screen_select_category_label": "اختر الصنف",
+  "expenses_form_screen_amount_label": "المبلغ",
+  "expenses_form_screen_date_label": "التاريخ",
+  "expenses_form_screen_attach_receipt_label": "إرفاق الإيصال",
+  "expenses_form_screen_add_category_label": "إضافة الصنف",
+  "expenses_form_screen_save_label": "حفظ"
 }
