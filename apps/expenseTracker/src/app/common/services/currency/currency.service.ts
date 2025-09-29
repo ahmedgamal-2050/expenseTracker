@@ -5,7 +5,7 @@ import {
   CurrencyApiResponse,
 } from '../../constants/currency-api.constants';
 import { environment } from '../../../../environments/environment';
-import { of } from 'rxjs';
+import { CurrencyResponse } from '../../models/currency.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +19,7 @@ export class CurrencyService {
       '{apiKey}',
       environment.apiKey
     );
-    return of(CurrencyApiResponse);
-    //return this.http.get(apiUrl);
+    return this.http.get<CurrencyResponse>(apiUrl);
   }
 
   convertCurrency(amount: number, currencyValue: number) {

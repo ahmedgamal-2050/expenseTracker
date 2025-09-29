@@ -11,6 +11,7 @@ import { CurrencyConversionPipe } from '../../../common/pipes/currency-conversio
 import { ExpensesService } from '../../../common/services/expenses/expenses.service';
 import { ApiArrayResponse, Meta } from '../../../common/models/api-array.model';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CurrencyResponse } from '../../../common/models/currency.model';
 
 @Component({
   selector: 'app-home',
@@ -141,9 +142,11 @@ export class HomeComponent implements OnInit {
   }
 
   getCurrency() {
-    this.currencyService.getCurrency().subscribe((currency) => {
-      this.currencyValue.set(currency.data[DefaultCurrency].value);
-    });
+    this.currencyService
+      .getCurrency()
+      .subscribe((currency: CurrencyResponse) => {
+        this.currencyValue.set(currency.data[DefaultCurrency].value);
+      });
   }
 
   getExpenses(page = 1) {
