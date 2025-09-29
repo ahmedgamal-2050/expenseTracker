@@ -1,1 +1,7 @@
-
+:host-context(html[dir='rtl']) input[type='date']::-webkit-datetime-edit,
+:host-context(html[dir='rtl'])
+  input[type='date']::-webkit-datetime-edit-fields-wrapper,
+:host-context(html[dir='rtl']) input[type='date']::-webkit-date-and-time-value {
+  direction: rtl;
+  text-align: end;
+}
